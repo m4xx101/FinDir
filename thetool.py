@@ -1,11 +1,10 @@
-
-#!/usr/bin/python
 import argparse
 import os 
 import sys
 # import commands
 import requests
 import concurrent.futures
+import urllib.request
 
 threads = []
 words=[]
@@ -20,16 +19,19 @@ def arguments():
 	return args
 
 args = arguments()
-with open(args.wordlist, 'r',encoding="utf8") as file:
-  a = file.readlines()
-  for i in a:
-      words.append(i.strip())
-#   print(a)
-#   for i in a:
-#       words.append(i.strip())
 
+def load_words(): 
+       with open(args.wordlist, 'r') as f:
+            # fetch one line each time, include '\n'
+            for line in f:
+                # strip '\n', then append it to wordlist
+                words.append(line.strip())
+
+# wordlist = 
+load_words()
+print(words)
 def bot(message):
-        token = '' ##Your Telegra token
+        token = 'AAEdXicGBELYyfk1ZbG8AgzJv8ee4HgeD4c' ##Your Telegra token
         chat_id = '' ## Your Telegra chat_id where you want to send the message
         endpoint='"https://api.telegram.org/bot'+token+'/sendmessage?chat_id='+chat_id+'&text='+message+'"'
         print(endpoint)
@@ -45,8 +47,9 @@ def bot(message):
 
 def scan(word):
     for i in words:
-        url = args.url+'/'+words[i]
-        response = requests.get(url)
+        url = args.url+'/'+words[i]    
+        response = urllib.request.urlopen(url)
+        html = response.read()
         print(url)
         # if response.status_code == 200:
         bot(url)	
@@ -59,8 +62,3 @@ if args.thread:
         executor.map(scan, words)  
 else:
     print('Lol')
-
-
-    
-
-    
