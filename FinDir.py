@@ -47,8 +47,8 @@ def load_words():
 load_words()
 
 def bot(message):
-        token = '988948677:AAEdXicGBELYyfk1ZbG8AgzJv8ee4HgeD4c' ##Your Telegra token
-        chat_id = '656722622' ## Your Telegra chat_id where you want to send the message
+        token = '' ##Your Telegra token
+        chat_id = '' ## Your Telegra chat_id where you want to send the message
         url = "https://api.telegram.org/bot{}/sendmessage?chat_id={}&text={}".format(token,chat_id,message)
         r = requests.get(url)
         return r
@@ -57,7 +57,7 @@ def scan(word):
     url = args.url+'/'+word   
     session = requests.session()
     r = session.get(url)
-    print(url+" - "+str(r.status_code))
+    print(url+" -> "+str(r.status_code))
     if r.status_code in success_status.values() or r.status_code==403 or r.status_code in Cloudflare_status.values() or r.status_code in info_status.values():
         if len(r.content) == content_length[-1]:
             pass
