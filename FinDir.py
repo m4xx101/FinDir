@@ -3,10 +3,14 @@ import os
 import sys
 import requests
 import concurrent.futures
-from pyfiglet import figlet
+from colorama import init
+init(strip=not sys.stdout.isatty())
+from termcolor import cprint
+from pyfiglet import figlet_format
 
 threads = []
 words=[]
+content_length=[]
 files = [".vscode","config.yaml",".gitignore",".svn/wc.db",".git/config", "phpmyadmin/", ".travis.yml",".DS_Store",".htaccess",".htpasswd","Makefile","Dockerfile","package.json","gulpfile.js","composer.json","web.config",".env",".idea","nbproject/","bower.json","package-lock.json",".gitlab-ci.yml","database.yml"]
 info_status = {"Continue":100,"Switching Protocols":101,"Processing ":102,"Early Hints":103}
 success_status = {"OK":200,"Created":201,"Accepted ":202,"Non-Authoritative Information":203,"No Content":204,"Reset Content":205,"Partial Content":206,"Multi-Status":207,"Already Reported":208,"IM Used":226}
@@ -18,9 +22,13 @@ Cloudflare_status={"Web Server Returned an Unknown Error":520,"Web Server Is Dow
 nginx_status={"No Response":444,"Request header too large":494," SSL Certificate Error":495,"SSL Certificate Required":496,"HTTP Request Sent to HTTPS Port":497,"Client Closed Request":499}
 iis_status={"Login Time-out":440,"Retry With":449,"Redirect":451}
 unofficial_status={"Checkpoint":103,"This is fine (Apache web server)":218,"Page Expired (Laravel Framework)":419,"Method Failure (Spring Framework)":420,"Request Header Fields Too Large (Shopify)":430,"Blocked by Windows Parental Controls (Microsoft)":450,"Invalid Token (Esri)":498,"Token Required (Esri)":499,"Bandwidth Limit Exceeded (Apache Web Server/cPanel)":509,"Invalid SSL Certificate":526,"Site is overloaded":529,"Site is frozen":530," (Informal convention) Network read timeout error":598}
+print("")
+text="F i n D i r"
+cprint(figlet_format(text, font="colossal"), "green") 
+print ("\033[4m\033[0m")
+print("\u0332".join("Twitter: @1m4xx0"))
+print("\u0332".join("https://m4xx101.github.io/official-blog-website" ))
 
-custom_fig = Figlet(font='block')
-print(custom_fig.renderText('FinDir'))
 def arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-u','--url',dest = "url", help='Target URL')
@@ -40,8 +48,8 @@ def load_words():
 load_words()
 
 def bot(message):
-        token = '' ##Your Telegra token
-        chat_id = '' ## Your Telegra chat_id where you want to send the message
+        token = '988948677:AAEdXicGBELYyfk1ZbG8AgzJv8ee4HgeD4c' ##Your Telegra token
+        chat_id = '656722622' ## Your Telegra chat_id where you want to send the message
         url = "https://api.telegram.org/bot{}/sendmessage?chat_id={}&text={}".format(token,chat_id,message)
         r = requests.get(url)
         return r
@@ -51,12 +59,13 @@ def scan(word):
     session = requests.session()
     r = session.get(url)
     print(url+" - "+str(r.status_code))
-    if r.status_code in success_status.values() or r.status_code==403 or r.status_code in Cloudflare_status.values() or r.status_code in info_status.values() :
+    if r.status_code in success_status.values() or r.status_code==403 or r.status_code in Cloudflare_status.values() or r.status_code in info_status.values():
+        if len(r.content) == content_length[-1]:
+            pass
         bot("[{} ] ".format(r.status_code)+url+" | Content-length: {} ".format(len(r.content)))
     elif r.status_code == 200 or r.status_code == 403 or r.status_code == 401 or r.status_code == 405 or r.status_code in info_status.values():
         bot("[!] (You might wanna take a look at this) "+url+" | Content-length: {} ".format(len(r.content)))
        
-
 if args.thread:
     thread_count = int(args.thread)
     with concurrent.futures.ThreadPoolExecutor(max_workers=thread_count) as executor:
