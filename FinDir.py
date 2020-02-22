@@ -4,6 +4,7 @@ import sys
 import requests
 import concurrent.futures
 import requests
+from pyfiglet import figlet
 
 threads = []
 words=[]
@@ -19,6 +20,8 @@ nginx_status={"No Response":444,"Request header too large":494," SSL Certificate
 iis_status={"Login Time-out":440,"Retry With":449,"Redirect":451}
 unofficial_status={"Checkpoint":103,"This is fine (Apache web server)":218,"Page Expired (Laravel Framework)":419,"Method Failure (Spring Framework)":420,"Request Header Fields Too Large (Shopify)":430,"Blocked by Windows Parental Controls (Microsoft)":450,"Invalid Token (Esri)":498,"Token Required (Esri)":499,"Bandwidth Limit Exceeded (Apache Web Server/cPanel)":509,"Invalid SSL Certificate":526,"Site is overloaded":529,"Site is frozen":530," (Informal convention) Network read timeout error":598}
 
+custom_fig = Figlet(font='block')
+print(custom_fig.renderText('FinDir'))
 def arguments():
 	parser = argparse.ArgumentParser()
 	parser.add_argument('-u','--url',dest = "url", help='Target URL')
