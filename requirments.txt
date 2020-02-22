@@ -1,3 +1,5 @@
 argparse
 requests
 pyfiglet
+colorama
+termcolor
