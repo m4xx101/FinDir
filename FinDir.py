@@ -26,8 +26,7 @@ print("")
 text="F i n D i r"
 cprint(figlet_format(text, font="colossal"), "green") 
 print ("\033[4m\033[0m")
-print("\u0332".join("Twitter: @1m4xx0"))
-print("\u0332".join("https://m4xx101.github.io/official-blog-website" ))
+print("Twitter: https://twitter.com/1m4xx0  " + "Web-site: https://m4xx101.github.io/official-blog-website")
 
 def arguments():
 	parser = argparse.ArgumentParser()
