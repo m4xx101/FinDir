@@ -1,6 +1,6 @@
 # FinDir
 
-FinDir is Directory brutefocer which can be used to run 24/7 againts target and will provide you the notification on Telegram once it finids any open directory 
+FinDir is Directory brutefocer which can be used to run 24/7 againts target and will provide you the notification on Telegram once it finds any open directory 
 
 # Usage
 
