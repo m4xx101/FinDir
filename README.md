@@ -18,7 +18,7 @@ PS M:\tool> python3 thetool.py -h
 
 Twitter: https://twitter.com/1m4xx0  Web site: https://m4xx101.github.io/official-blog-website
 
-usage: thetool.py [-h] [-u URL] [-w WORDLIST] [-t THREAD]
+usage: FinDir.py [-h] [-u URL] [-w WORDLIST] [-t THREAD]
 
 optional arguments:
   -h, --help            show this help message and exit
