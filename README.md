@@ -5,7 +5,7 @@ FinDir is Directory brutefocer which can be used to run 24/7 againts target and 
 # Usage
 
 ```sh
-PS M:\tool> python3 thetool.py -h
+PS M:\tool> python3 FinDir.py -h
 
 8888888888   d8b              8888888b.    d8b
 888          Y8P              888  "Y88b   Y8P
